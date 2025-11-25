@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Segundo paso</title>
+</head>
+<body>
+
+<form th:action="@{/seguros/calculos/cotizacion/paso3}"
+      th:object="${cotizacionSeguro}"
+      method="post">
+
+    <label> Tipo de Cobertura:</label>
+    <input id="tipo1" type="radio" th:field="*{tipoCobertura}" value="TERCEROS"/><label for="tipo1">Terceros</label>
+    <input id="tipo2" type="radio" th:field="*{tipoCobertura}" value="TERCEROS_MAS_LUNAS"/><label for="tipo2">Terceros + Lunas</label>
+    <input id="tipo3" type="radio" th:field="*{tipoCobertura}" value="TODO_RIESGO"/><label for="tipo3">Todo riesgo</label>
+
+    <label> Asistencia en carretera:</label>
+    <input id="asistencia" type="radio" th:field="*{asistencia}" value="true"/><label for="asistencia">Si</label>
+    <input id="asistencia2" type="radio" th:field="*{asistencia}" value="false"/><label for="asistencia2">No</label>
+
+    <label> Vehículo sustitución:</label>
+    <input id="vehiculoSus1" type="radio" th:field="*{asistencia}" value="true"/><label for="tipo1">Si</label>
+    <input id="vehiculoSus2" type="radio" th:field="*{asistencia}" value="false"/><label for="tipo2">No</label>
+
+
+    <h1>Resumen de la contratación</h1>
+
+
+    <div>
+        Conductor: <span th:text="${datosConductor}"></span>
+    </div>
+
+    <div>
+        Vehículo: <span th:text="${datosVehiculo}"></span>
+    </div>
+
+    <div>
+        Cobertura: <span th:text="${datosCobertura}"></span>
+    </div>
+
+
+
+    <a href="/seguros/calculos/cotizacion/paso2">
+        <button type="button">Anterior</button>
+
+    </a>
+    <button>Siguiente</button>
+
+
+</form>
+
+</body>
+</html>

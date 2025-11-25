@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Primer paso</title>
+</head>
+<body>
+
+    <form th:action="@{/seguros/calculos/cotizacion/paso1}"
+          th:object="${cotizacionSeguro}"
+          method="post">
+
+        <label for="nombre"> Nombre y Apellido:</label>
+        <input id="nombre" type="text" th:field="*{nombre}"/>
+
+        <label for="edad"> Edad:</label>
+        <input id="edad" type="text" th:field="*{edad}"/>
+
+        <label for="aniosCarnet"> Años de Carnet</label>
+        <input id="aniosCarnet" type="text" th:field="*{anioCarnet}"/>
+
+
+
+        <button>Enviar</button>
+
+
+    </form>
+
+</body>
+</html>
