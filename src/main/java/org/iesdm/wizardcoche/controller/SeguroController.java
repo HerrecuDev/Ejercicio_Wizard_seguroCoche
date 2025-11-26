@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SeguroController {
 
     @GetMapping("/calculos/cotizacion/paso1")
-    public String paso1(Model model , @ModelAttribute CotizacionSeguro cotizacionSeguro , HttpSession httpSession){
+    public String paso1(Model model , HttpSession httpSession){
 
          var cotizacionSegurohttpSession = (CotizacionSeguro) httpSession.getAttribute("cotizacionSeguro");
 
@@ -41,12 +41,12 @@ public class SeguroController {
     //Genero el GET del paso2:
 
     @GetMapping("/calculos/cotizacion/paso2")
-    public String anteriorPaso3(Model model , HttpSession httpSession){
+    public String anteriorDesdePaso3Post(Model model , HttpSession httpSession){
 
-        ///  STring || Object
-        var cotizacionSeguro = (CotizacionSeguro)httpSession.getAttribute("cotizacionSeguro");
+        /// STring || Object
+        var cotizacionSeguroHttpSession = (CotizacionSeguro) httpSession.getAttribute("cotizacionSeguro");
 
-        model.addAttribute("cotizacionSeguro" , cotizacionSeguro);
+        model.addAttribute("cotizacionSeguro" , cotizacionSeguroHttpSession);
 
         return "paso2";
     }
@@ -84,9 +84,6 @@ public class SeguroController {
 
 
        }
-
-
-
         //Entre peticiones consecutivas se mantiene el mapa de httpSession<String,Object>
 
         model.addAttribute("cotizacionSeguro" , cotizacionSeguroHttpSession);
@@ -113,7 +110,10 @@ public class SeguroController {
             cotizacionSeguroHttpSession.setVehsustitucion(cotizacionSeguro.isVehsustitucion());
 
 
-            model.addAttribute("datosCobertura" + cotizacionSeguro.getTipoCobertura());
+            model.addAttribute("datosCobertura" + cotizacionSeguroHttpSession.getTipoCobertura()
+            + " | " + cotizacionSeguroHttpSession.isAsistencia()
+            + " | " + cotizacionSeguroHttpSession.isVehsustitucion()
+            );
         }
 
 
